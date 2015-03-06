@@ -81,7 +81,6 @@
 		6390A1951AA7818C00DD68FE /* Pitch-Perfect */ = {
 			isa = PBXGroup;
 			children = (
-				635EDB461AAA24040054E885 /* movie_quote.mp3 */,
 				6390A1981AA7818C00DD68FE /* AppDelegate.swift */,
 				6390A19A1AA7818C00DD68FE /* ViewController.swift */,
 				635EDB441AAA1EB90054E885 /* PlaySoundsViewController.swift */,
@@ -96,6 +95,7 @@
 		6390A1961AA7818C00DD68FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				635EDB461AAA24040054E885 /* movie_quote.mp3 */,
 				6390A1971AA7818C00DD68FE /* Info.plist */,
 			);
 			name = "Supporting Files";

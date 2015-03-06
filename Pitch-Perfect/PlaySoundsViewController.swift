@@ -18,17 +18,28 @@ class PlaySoundsViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
-        let pathURL = NSURL(string: path!)
-        self.audio = AVAudioPlayer(contentsOfURL: pathURL, error: nil)
+        
+        if var path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
+        {
+            let pathURL = NSURL(string: path)
+            self.audio = AVAudioPlayer(contentsOfURL: pathURL, error: nil)
+            self.audio.enableRate = true
+        }
+        else
+        {
+            println("There was an error trying to ger the path")
+        }
+        
+        
 
         
     }
     
     @IBAction func playSlowAudio(sender: UIButton)
     {
-        
-        audio.play()
+        self.audio.stop()
+        self.audio.rate = 0.5
+        self.audio.play()
     }
 
 }
