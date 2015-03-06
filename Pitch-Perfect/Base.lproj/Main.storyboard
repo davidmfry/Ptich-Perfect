@@ -87,11 +87,33 @@
                                     <action selector="playSlowAudio:" destination="cwS-1y-1sA" eventType="touchUpInside" id="Dz7-GC-cs1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D6-Ok-ayX">
+                                <rect key="frame" x="424" y="100" width="100" height="100"/>
+                                <state key="normal" image="fastImage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playFastAudio:" destination="cwS-1y-1sA" eventType="touchUpInside" id="THZ-7b-E7b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-3p-0Sj">
+                                <rect key="frame" x="275" y="484" width="50" height="50"/>
+                                <state key="normal" image="stopButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButtonPressed:" destination="cwS-1y-1sA" eventType="touchUpInside" id="uvU-kv-2on"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gf2-IG-DYG" firstAttribute="leading" secondItem="kSO-9X-Raf" secondAttribute="leadingMargin" constant="60" id="2na-d3-zx3"/>
+                            <constraint firstAttribute="centerX" secondItem="8c5-3p-0Sj" secondAttribute="centerX" id="7Ff-gV-8Do"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1D6-Ok-ayX" secondAttribute="trailing" constant="60" id="DEm-Y6-F0d"/>
                             <constraint firstItem="Gf2-IG-DYG" firstAttribute="top" secondItem="kB1-ft-lCq" secondAttribute="bottom" constant="36" id="Q5o-zx-BEi"/>
+                            <constraint firstItem="1D6-Ok-ayX" firstAttribute="top" secondItem="kB1-ft-lCq" secondAttribute="bottom" constant="36" id="cAf-rh-f7i"/>
+                            <constraint firstItem="GSp-ey-abs" firstAttribute="top" secondItem="8c5-3p-0Sj" secondAttribute="bottom" constant="66" id="xwz-gl-5BR"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -119,6 +141,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fastImage" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slowImage" width="100" height="100"/>
         <image name="stopButton" width="50" height="50"/>
