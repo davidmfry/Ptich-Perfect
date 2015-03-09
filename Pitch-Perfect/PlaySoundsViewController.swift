@@ -14,21 +14,32 @@ class PlaySoundsViewController: UIViewController
 
     
     var audio: AVAudioPlayer!
+    var recivedAudio: RecoredAudio!
+    
+    var audioEngine: AVAudioEngine!
+    var audioFile: AVAudioFile!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        if var path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
-        {
-            let pathURL = NSURL(string: path)
-            self.audio = AVAudioPlayer(contentsOfURL: pathURL, error: nil)
-            self.audio.enableRate = true
-        }
-        else
-        {
-            println("There was an error trying to ger the path")
-        }
+//        if var path = NSBundle.mainBundle().pathForResource(self.recivedAudio.title, ofType: "wav")
+//        {
+//            //let pathURL = NSURL(string: path)
+//            self.audio = AVAudioPlayer(contentsOfURL: self.recivedAudio.filePathURL, error: nil)
+//            self.audio.enableRate = true
+//        }
+//        else
+//        {
+//            println("There was an error trying to get the path")
+//        }
+        
+        self.audio = AVAudioPlayer(contentsOfURL: self.recivedAudio.filePathURL, error: nil)
+        self.audio.enableRate = true
+        
+        self.audioEngine = AVAudioEngine()
+        
+        self.audioFile = AVAudioFile(forReading: self.recivedAudio.filePathURL, error: nil)
         
         
 
@@ -51,6 +62,16 @@ class PlaySoundsViewController: UIViewController
         self.audio.stop()
     }
     
+    @IBAction func playChipmunk(sender: AnyObject)
+    {
+        self.playAudioWithVariablePitch(1000)
+    }
+    
+    @IBAction func playDarthVaderSound(sender: UIButton)
+    {
+        self.playAudioWithVariablePitch(-1000)
+    }
+    
     func playAudioWithRate(audioPlayer: AVAudioPlayer, rate: Float)
     {
         audioPlayer.stop()
@@ -58,4 +79,35 @@ class PlaySoundsViewController: UIViewController
         audioPlayer.rate = rate
         audioPlayer.play()
     }
+    
+    func playAudioWithVariablePitch(pitch: Float)
+    {
+        self.audio.stop()
+        self.audioEngine.stop()
+        self.audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        self.audioEngine.attachNode(audioPlayerNode)
+        
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        self.audioEngine.attachNode(changePitchEffect)
+        
+        self.audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        self.audioEngine.connect(changePitchEffect, to: self.audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(self.audioFile, atTime: nil) { () -> Void in
+            
+        }
+        
+        self.audioEngine.startAndReturnError(nil)
+        audioPlayerNode.play()
+    }
+    
+    
+    
+    
+    
+    
+    
 }
